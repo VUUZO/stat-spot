@@ -20,7 +20,7 @@ export default async function Home () {
       {
         song.isPlaying ? (
         <div className="flex gap-8 flex-wrap sm:flex-nowrap items-center p-4">
-          <div className={`relative w-full sm:w-20 rounded-full aspect-square overflow-hidden`}>
+          <div className={`relative w-full sm:w-[80px] rounded-full aspect-square overflow-hidden`}>
             <Image alt='album picture' src={song.albumImageUrl} fill className={`object-cover absolute  ${song.isPlaying ? 'animate-spin' : ''}`}/>
           </div>
           <div className="text-center w-full sm:text-left">
@@ -30,7 +30,7 @@ export default async function Home () {
         </div>
         ) : (
           <div className="flex gap-8 flex-wrap sm:flex-nowrap items-center p-4">
-          <div className={`relative w-full sm:w-20 rounded-[20px] aspect-square overflow-hidden`}>
+          <div className={`relative w-full sm:w-[80px] rounded-[20px] aspect-square overflow-hidden`}>
             <Image alt='album picture' src={favourite.albumImageUrl} fill className={`object-cover absolute`}/>
           </div>
           <div className="text-center w-full sm:text-left">
