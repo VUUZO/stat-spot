@@ -8,7 +8,6 @@ export type CurrentlyPlaying = {
   title: string
 }
 
-
 export async function getAccessToken() {
   const basic = Buffer.from(
     `${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`
@@ -58,38 +57,4 @@ export async function getCurrentlyPlaying() {
     songUrl,
     title,
   } as CurrentlyPlaying
-}
-
-
-export type Fav = {
-  albumImageUrl: string
-  artist: string
-  songUrl: string
-  title: string
-}
-
-export async function getFavSongs() {
-  const access_token = await getAccessToken()
-
-  const response = await fetch(
-    'https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=1',
-    { headers: { Authorization: `Bearer ${access_token}` }, cache: 'no-store' }
-  )
-  
-  if (response.status === 204 || response.status > 400) {
-    return false
-  }
-
-  const featured = await response.json()
-  const title = featured.items[0].name
-  const albumImageUrl = featured.items[0].album.images[1].url
-  const artist = featured.items[0].artists[0].name
-  const songUrl = featured.items[0].external_urls.spotify
-
-  return {
-    albumImageUrl,
-    title,
-    artist,
-    songUrl
-  } as Fav
 }
