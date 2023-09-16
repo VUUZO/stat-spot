@@ -13,7 +13,7 @@ export default function Home () {
         isLoading ? (
           <div></div>
         ) : error ? (
-          <div>There was an error</div>
+          <div>There was an error.</div>
         ) : (
           <>
             {
