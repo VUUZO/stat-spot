@@ -43,7 +43,7 @@ export async function GET(req: NextRequest) {
         headers: {
           'content-type': 'application/json',
           // 'cache-control': 'public, s-maxage=60, stale-while-revalidate=30'
-          'cache-control': 'public, max-age=0'
+          'cache-control': 'no-cache, no-store, max-age=0, must-revalidate'
         }
       }
     );
