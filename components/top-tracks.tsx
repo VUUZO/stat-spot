@@ -14,7 +14,6 @@ type Track = {
 const TopTracks = () => {
   
   const { data: tracks, isLoading, error } = useSWR<Track[]>('/api/top-tracks', fetcher)
-  console.log(tracks)
   return (
     isLoading ? (
       <div></div>
