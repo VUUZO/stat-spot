@@ -15,8 +15,6 @@ type NowPlaying = {
 
 const NowPlaying = () => {
   const { data: playing, error, isLoading } = useSWR<NowPlaying>('/api/listening', fetcher)
-
-  console.log(playing?.artist)
   return (
         isLoading ? (
           <div></div>
