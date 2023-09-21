@@ -13,6 +13,14 @@ type NowPlaying = {
   isPlaying: boolean
 }
 
+const recent: NowPlaying = {
+  title: "HYAENA",
+  songUrl: "https://open.spotify.com/track/0hL9gOw6XBWsygEUcVjxEc",
+  albumImageUrl: "https://i.scdn.co/image/ab67616d0000b273881d8d8378cd01099babcd44",
+  artist: "Travis Scott",
+  isPlaying: false
+}
+
 const NowPlaying = () => {
   const {
     data: playing,
@@ -45,7 +53,21 @@ const NowPlaying = () => {
                 </Link>
                 </>
               ) : (
-                <h2 className="py-4 uppercase font-bold">Not listening to anything</h2>
+                <>
+                <h2 className="py-4 uppercase font-bold flex items-center gap-2">Recent track</h2>
+
+                <Link href={recent.songUrl} target="_blank" className="inline-block">
+                  <div className="flex flex-col sm:flex-row gap-5 items-start">
+                    <div className="relative w-[120px] aspect-square shrink-0 rounded-3xl overflow-hidden">
+                      <Image alt={'sraka'} src={recent.albumImageUrl as string} fill className="object-fill absolute"/>
+                    </div>
+                    <div>
+                      <h2 className="font-semibold text-4xl">{recent.title}</h2>
+                      <p className="text-xl">{recent.artist}</p>
+                    </div>
+                  </div>
+                </Link>
+                </>
               )
             }
           </>
