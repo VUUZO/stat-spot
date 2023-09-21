@@ -14,12 +14,17 @@ type NowPlaying = {
 }
 
 const NowPlaying = () => {
-  const { data: playing, error, isLoading } = useSWR<NowPlaying>('/api/listening', fetcher)
+  const {
+    data: playing,
+    isLoading,
+    error
+  } = useSWR<NowPlaying>('/api/listening', fetcher)
+  
   return (
         isLoading ? (
-          <div></div>
+          <div>Fetching data...</div>
         ) : error ? (
-          <div>There was an error.</div>
+          <div>There was an error</div>
         ) : (
           <>
             {

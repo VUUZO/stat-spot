@@ -1,7 +1,9 @@
 import { getTopTracks } from "@/lib/spotify";
-import { NextRequest } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 
-export async function GET(req: NextRequest) {
+export const dynamic = 'force-dynamic'
+
+export async function GET(request: Request) {
   const response = await getTopTracks()
   const { items } = await response.json()
 
@@ -13,11 +15,10 @@ export async function GET(req: NextRequest) {
     albumImageUrl: track.album.images[0].url
   }))
 
-  return new Response(JSON.stringify(tracks), {
+  return NextResponse.json(tracks, {
     status: 200,
     headers: {
       'content-type': 'application/json',
-      'cache-control': 'public, s-maxage=86400, stale-while-revalidate=43200'      
     }
   })
 }

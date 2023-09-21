@@ -12,8 +12,14 @@ type Track = {
 }
 
 const TopTracks = () => {
+  const {
+    data: tracks,
+    isLoading,
+    error
+  } = useSWR<Track[]>('/api/top-tracks', fetcher)
+
+  console.log(tracks)
   
-  const { data: tracks, isLoading, error } = useSWR<Track[]>('/api/top-tracks', fetcher)
   return (
     isLoading ? (
       <div></div>
@@ -21,7 +27,7 @@ const TopTracks = () => {
       <p>There was an error</p>
     ) : (
       <>
-        <h2 className="py-4 uppercase font-bold">Top tracks:</h2>
+        <h2 className="py-4 uppercase font-bold">Top tracks [4 weeks]:</h2>
         <ul className="flex flex-col gap-2">
           {
             tracks?.map((track, idx) => (

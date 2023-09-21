@@ -1,51 +1,49 @@
-import { getNowPlaying } from "@/lib/spotify";
-import { NextRequest } from "next/server";
+import { NextResponse, type NextRequest } from 'next/server';
+import { getNowPlaying } from '@/lib/spotify';
 
-export async function GET(req: NextRequest) {
-  const response = await getNowPlaying()
-  
+export const dynamic = 'force-dynamic'
+
+export async function GET(request: Request) {
+  const response = await getNowPlaying();
+
   if (response.status === 204 || response.status > 400) {
-    return new Response(JSON.stringify({ isPlaying: false }), {
+    return NextResponse.json({
+      isPlaying: false
+    }, {
       status: 200,
-      headers: {
-        'content-type': 'application/json'
-      }
-    });
-  }
-  
-  const { item, is_playing } = await response.json()
-
-  if(item === null) {
-    return new Response(JSON.stringify({ isPlaying: false }), {
-      status: 200,
-      headers: {
-        'content-type': 'application/json'
-      }
+      headers: { 'content-type': 'application/json' }
     });
   }
 
-    const title = item.name
-    const songUrl = item.external_urls.spotify
-    const albumImageUrl = item.album.images[0].url
-    const artist = item.artists.map((artist: { name: string }) => artist.name).join(', ')
-    const isPlaying = is_playing
+  const song = await response.json();
 
-    return new Response(
-      JSON.stringify({
-        title,
-        artist,
-        songUrl,
-        albumImageUrl,
-        isPlaying,
-      }),
-      {
-        status: 200,
-        headers: {
-          'content-type': 'application/json',
-          // 'cache-control': 'public, s-maxage=60, stale-while-revalidate=30'
-          'cache-control': 'no-cache, no-store, max-age=0, must-revalidate'
-        }
-      }
-    );
+  if (song.item === null) {
+    return NextResponse.json({
+      isPlaying: false
+    }, {
+      status: 200,
+      headers: { 'content-type': 'application/json' }
+    });
+  }
+
+  const isPlaying = song.is_playing;
+  const title = song.item.name;
+  const artist = song.item.artists.map((_artist: any) => _artist.name).join(', ');
+  const album = song.item.album.name;
+  const albumImageUrl = song.item.album.images[0].url;
+  const songUrl = song.item.external_urls.spotify;
+
+  return NextResponse.json({
+    isPlaying,
+    title,
+    artist,
+    album,
+    albumImageUrl,
+    songUrl
+  }, {
+    status: 200,
+    headers: {
+      'content-type': 'application/json',
+    }
+  })
 }
-

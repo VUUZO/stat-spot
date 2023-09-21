@@ -4,7 +4,7 @@ const refresh_token = process.env.SPOTIFY_REFRESH_TOKEN as string
 
 const basic = btoa(`${client_id}:${client_secret}`)
 const NOW_PLAYING_ENDPOINT = `https://api.spotify.com/v1/me/player/currently-playing`;
-const TOP_TRACKS_ENDPOINT = `https://api.spotify.com/v1/me/top/tracks`;
+const TOP_TRACKS_ENDPOINT = `https://api.spotify.com/v1/me/top/tracks?time_range=short_term`;
 const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
 
 const getAccessToken = async () => {
@@ -18,7 +18,6 @@ const getAccessToken = async () => {
       grant_type: 'refresh_token',
       refresh_token
     }),
-    cache: 'no-store'
   });
  
   return response.json();
