@@ -15,7 +15,7 @@ const lincolnSecondary = localFont({
 })
 
 export const metadata: Metadata = {
-  title: 'cosiesłucha',
+  title: 'trackfm',
   description: 'v',
   icons: {
     icon: '/icon.svg',
@@ -30,7 +30,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${lincolnPrimary.variable} ${lincolnSecondary.variable}`}>
-      <body>{children}</body>
+      <body className='text-white bg-darkest'>
+        {children}
+      </body>
     </html>
   )
 }
