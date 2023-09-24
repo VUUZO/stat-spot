@@ -22,7 +22,7 @@ const config: Config = {
         'dark': '#161616',
         'dark-light': '#242424',
         'green': '#91FF5E',
-        'green-light': '#37FF63',
+        'green-light': 'rgba(145,255,94,.2)',
       }
     },
   },
