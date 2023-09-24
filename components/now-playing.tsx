@@ -46,8 +46,8 @@ const NowPlaying = () => {
                       <Image alt={'sraka'} src={playing?.albumImageUrl as string} fill className="object-fill absolute"/>
                     </div>
                     <div>
-                      <h2 className="font-semibold text-4xl">{playing?.title}</h2>
-                      <p className="text-xl">{playing?.artist}</p>
+                      <h2 className="font-primary leading-[48px] text-[40px]">{playing?.title}</h2>
+                      <p className="font-secondary leading-[19px]">{playing?.artist}</p>
                     </div>
                   </div>
                 </Link>
@@ -62,8 +62,8 @@ const NowPlaying = () => {
                       <Image alt={'sraka'} src={recent.albumImageUrl as string} fill className="object-fill absolute"/>
                     </div>
                     <div>
-                      <h2 className="font-semibold text-4xl">{recent.title}</h2>
-                      <p className="text-xl">{recent.artist}</p>
+                      <h2 className="font-primary font-semibold text-[40px]">{recent.title}</h2>
+                      <p className="font-secondary">{recent.artist}</p>
                     </div>
                   </div>
                 </Link>

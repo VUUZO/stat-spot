@@ -7,7 +7,7 @@ export async function GET(request: Request) {
   const response = await getTopTracks()
   const { items } = await response.json()
 
-  const tracks = items.slice(0, 10).map((track: any) => ({
+  const tracks = items.slice(0, 50).map((track: any) => ({
     // @ts-ignore
     artist: track.artists.map(artist => artist.name).join(', '),
     songUrl: track.external_urls.spotify,
