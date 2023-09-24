@@ -1,9 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import localFont from 'next/font/local'
 
-const inter = Inter({ subsets: ['latin'] })
 const lincolnPrimary = localFont({
   src: '../public/fonts/LincolnMITRE-LM.woff',
   variable: '--lincoln-primary'
