@@ -3,9 +3,10 @@ const client_secret = process.env.SPOTIFY_CLIENT_SECRET
 const refresh_token = process.env.SPOTIFY_REFRESH_TOKEN as string
 
 const basic = btoa(`${client_id}:${client_secret}`)
-const NOW_PLAYING_ENDPOINT = `https://api.spotify.com/v1/me/player/currently-playing`;
-const TOP_TRACKS_ENDPOINT = `https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=50`;
 const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
+const NOW_PLAYING_ENDPOINT = `https://api.spotify.com/v1/me/player/currently-playing`;
+
+type TimeRange = 'short_term' | 'medium_term' | 'long_term'
 
 const getAccessToken = async () => {
   const response = await fetch(TOKEN_ENDPOINT, {
@@ -34,9 +35,21 @@ export const getNowPlaying = async () => {
 }
 
 export const getTopTracks = async () => {
+  const time_range: TimeRange = "short_term"
   const { access_token } = await getAccessToken()
 
-  return fetch(TOP_TRACKS_ENDPOINT, {
+  return fetch(`https://api.spotify.com/v1/me/top/tracks?time_range=${time_range}&limit=50`, {
+    headers: {
+      Authorization: `Bearer ${access_token}`
+    }
+  })
+}
+
+export const getTopArtists = async () => {
+  const time_range: TimeRange = "short_term"
+  const { access_token } = await getAccessToken()
+
+  return fetch(`https://api.spotify.com/v1/me/top/artists?time_range=${time_range}&limit=50`, {
     headers: {
       Authorization: `Bearer ${access_token}`
     }
