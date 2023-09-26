@@ -14,10 +14,7 @@ const lincolnSecondary = localFont({
 
 export const metadata: Metadata = {
   title: 'trackfm',
-  description: 'v',
-  icons: {
-    icon: '/icon.svg',
-  }
+  description: 'Track your Spotify data',
 }
 
 
@@ -28,6 +25,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${lincolnPrimary.variable} ${lincolnSecondary.variable}`}>
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" type="image/png" sizes="any" />
+      </head>
       <body className='text-white bg-darkest'>
         {children}
       </body>
