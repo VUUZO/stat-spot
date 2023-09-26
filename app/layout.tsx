@@ -27,7 +27,7 @@ export default function RootLayout({
     <html lang="en" className={`${lincolnPrimary.variable} ${lincolnSecondary.variable}`}>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" type="image/png" sizes="any" />
+        <link rel="apple-touch-icon" href="./icons/apple-icon.png" type="image/png" sizes="180x180" />
       </head>
       <body className='text-white bg-darkest'>
         {children}
