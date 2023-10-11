@@ -6,7 +6,7 @@ const basic = btoa(`${client_id}:${client_secret}`)
 const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
 const NOW_PLAYING_ENDPOINT = `https://api.spotify.com/v1/me/player/currently-playing`;
 
-type TimeRange = 'short_term' | 'medium_term' | 'long_term'
+export type TimeRange = 'short_term' | 'medium_term' | 'long_term'
 
 const getAccessToken = async () => {
   const response = await fetch(TOKEN_ENDPOINT, {
@@ -34,8 +34,7 @@ export const getNowPlaying = async () => {
     })
 }
 
-export const getTopTracks = async () => {
-  const time_range: TimeRange = "short_term"
+export const getTopTracks = async (time_range: TimeRange = "short_term") => {
   const { access_token } = await getAccessToken()
 
   return fetch(`https://api.spotify.com/v1/me/top/tracks?time_range=${time_range}&limit=50`, {
@@ -45,8 +44,30 @@ export const getTopTracks = async () => {
   })
 }
 
-export const getTopArtists = async () => {
-  const time_range: TimeRange = "short_term"
+
+// TRACK DETAILS
+
+export const getTrackDetails = async (track_id: string) => {
+  const { access_token } = await getAccessToken()
+
+  return fetch(`https://api.spotify.com/v1/tracks/${track_id}`, {
+    headers: {
+      Authorization: `Bearer ${access_token}`
+    }
+  })
+}
+export const getTrackAudioFeatuers = async (track_id: string) => {
+  const { access_token } = await getAccessToken()
+
+  return fetch(`https://api.spotify.com/v1/audio-features/${track_id}`, {
+    headers: {
+      Authorization: `Bearer ${access_token}`
+    }
+  })
+}
+
+
+export const getTopArtists = async ({ time_range = 'short_term' }: { time_range: TimeRange }) => {
   const { access_token } = await getAccessToken()
 
   return fetch(`https://api.spotify.com/v1/me/top/artists?time_range=${time_range}&limit=50`, {
