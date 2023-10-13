@@ -1,6 +1,7 @@
 'use client'
 
 import fetcher from "@/lib/fetcher"
+import { formatNumber } from "@/lib/numberFormatter"
 import Image from "next/image"
 import useSWR from "swr"
 
@@ -9,7 +10,7 @@ type Artist = {
   imgUrl: string
   spotifyUrl: string
   popularity: string
-  followers: string
+  followers: number
   genres: string
 }
 
@@ -31,10 +32,9 @@ const Page = ({ params }: { params: { id: string } }) => {
               className="object-cover absolute"/>
           </div>
         </div>
-        <div className="py-5 flex-1">
-
-          <h2 className="text-3xl">{artist?.name}</h2>
-          
+        <div className="flex-1">
+          <h2 className="text-3xl hyphens-auto">{artist?.name}</h2>
+          <p>{formatNumber(artist?.followers!)} followers</p>
           {/* @ts-ignore */}
           <h3 className="pt-1 font-secondary text-xs">{artist?.genres.map(genre => genre).join(', ')}</h3>
         </div>
