@@ -5,9 +5,9 @@ import { usePathname } from 'next/navigation'
 import { twMerge } from "tailwind-merge"
 
 const links = [
-  { id: 0, name: 'Tracks', href: 'tracks', available: true },
-  { id: 1, name: 'Artists', href: 'artists', available: false },
-  { id: 2, name: 'Genres', href: 'genres', available: false },
+  { id: 0, name: 'Home', href: '' },
+  { id: 1, name: 'Top', href: 'top' },
+  { id: 2, name: 'Stats', href: 'stats' },
 ]
 
 const Navigation = ({ className = '' }: { className?: string }) => {
