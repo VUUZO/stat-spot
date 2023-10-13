@@ -2,7 +2,13 @@
 
 import fetcher from "@/lib/fetcher"
 import Image from "next/image"
+import Link from "next/link"
 import useSWR from "swr"
+
+type ArtistType = {
+  name: string
+  id: string
+}
 
 type Track = {
   album: {
@@ -11,7 +17,7 @@ type Track = {
     release_date: string
   },
   name: string
-  artist: string
+  artists: ArtistType[]
   id: string
   popularity: number
   songImg: string
@@ -19,8 +25,11 @@ type Track = {
 }
 
 const Page = ({ params }: { params: { track_id: string } }) => {
+
   const { track_id } = params
   const { data: track, isLoading, error } = useSWR<Track>(`/api/track?track_id=${track_id}`, fetcher)
+  
+  console.log(track?.artists)
 
   const dateFormatter =
   (date: string | number)=>
@@ -32,18 +41,22 @@ const Page = ({ params }: { params: { track_id: string } }) => {
     : (
       <div>
         <div>
-          <div className="relative w-full border-2 rounded-md overflow-hidden border-dark-light aspect-square">
+          <div className="relative w-full border-2 rounded-[20px] overflow-hidden border-dark-light aspect-square">
             <Image
               src={track?.songImg!}
               alt='txt'
               fill
               className="object-cover absolute"/>
           </div>
-          <p>{track?.album.name} · {dateFormatter(track?.album.release_date!)}</p>
+          <p className="text-sm pt-[10px] text-zinc-400">{track?.album.name} · {dateFormatter(track?.album.release_date!)}</p>
         </div>
-        <div>
-          <h2 className="text-7xl">{track?.name}</h2>
-          <h3>{track?.artist}</h3>
+        <div className="py-5">
+          <h2 className="text-3xl">{track?.name}</h2>
+          <h3 className="pt-1 font-secondary text-xs">
+            {track?.artists.map(artist => (
+              <Link className="inline-block mr-2 hover:text-green hover:bg-green-light" key={artist.id} href={`/artist/${artist.id}`}>{artist.name}</Link>
+            ))}
+          </h3>
         </div>
       </div>
     )
