@@ -1,4 +1,5 @@
-import { getTopTracks, TimeRange } from "@/lib/spotify";
+import { Term } from "@/app/context/term-context";
+import { getTopTracks } from "@/lib/spotify";
 import { NextResponse, type NextRequest } from "next/server";
 
 export const dynamic = 'force-dynamic'
@@ -7,7 +8,7 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
   const term = searchParams.get('term')
 
-  const response = await getTopTracks(term as TimeRange)
+  const response = await getTopTracks(term as Term)
   const { items } = await response.json()
 
   const tracks = items.map((track: any) => ({
