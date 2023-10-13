@@ -40,7 +40,7 @@ export default function RootLayout({
           <Navigation />
           <TermProvider>
             <TermNavigation />
-            <Container className='grid-in-main overflow-y-scroll rounded-[30px]'>
+            <Container className='rounded-[30px]'>
               {children}
             </Container>
           </TermProvider>
