@@ -20,7 +20,10 @@ const details = {
     release_date: data.album.release_date
   },
   // @ts-ignore
-  artist: data.artists.map(artist => artist.name).join(', '),
+  artists: data.artists.map(artist => ({
+    name: artist.name,
+    id: artist.id
+  })),
   songUrl: data.external_urls.spotify,
   songImg: data.album.images[0].url,
   duration: data.duration_ms,
