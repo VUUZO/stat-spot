@@ -1,11 +1,13 @@
 import './globals.css'
 
 import type { Metadata } from 'next'
+
 import localFont from 'next/font/local'
 import Navigation from '@/components/Navigation'
-import NowPlaying from '@/components/NowPlaying'
-import { GridLayout } from '@/components/GridLayout'
+
 import { Container } from '@/components/Container'
+import { TermNavigation } from '@/components/TermNavigation'
+import { TermProvider } from './context/term-context'
 
 const lincolnPrimary = localFont({
   src: '../public/fonts/LincolnMITRE-LM.woff',
@@ -18,8 +20,8 @@ const lincolnSecondary = localFont({
 })
 
 export const metadata: Metadata = {
-  title: 'Strack',
-  description: 'Track your Spotify data',
+  title: 'listento',
+  description: 'listento | sieslucha',
   themeColor: '#121212'
 }
 
@@ -31,22 +33,18 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${lincolnPrimary.variable} ${lincolnSecondary.variable} font-primary`}
+      className={`${lincolnPrimary.variable} ${lincolnSecondary.variable} font-primary text-zinc-300 bg-[#111]`}
     >
       <body>
-          <GridLayout>
-            <div className='hidden lg:block grid-in-empty bg-dark rounded-[10px]'/>
-
-            <div className='grid-in-play'>
-              <NowPlaying />
-            </div>
-            <Container className='grid-in-navig bg-[none] border-opacity-0 md:bg-dark md:border-opacity-20'>
-              <Navigation />
-            </Container>
+        <section>
+          <Navigation />
+          <TermProvider>
+            <TermNavigation />
             <Container className='grid-in-main overflow-y-scroll rounded-[30px]'>
               {children}
             </Container>
-          </GridLayout>
+          </TermProvider>
+        </section>
       </body>
     </html>
   )
