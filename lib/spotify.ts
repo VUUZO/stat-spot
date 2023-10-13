@@ -78,3 +78,14 @@ export const getTrackAudioFeatuers = async (track_id: string) => {
 }
 
 
+// ARTIST DETAILS
+
+export const getArtistDetails = async (id: string) => {
+  const { access_token } = await getAccessToken()
+
+  return fetch(`https://api.spotify.com/v1/artists/${id}`, {
+    headers: {
+      Authorization: `Bearer ${access_token}`
+    }
+  })
+}
