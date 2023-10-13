@@ -11,7 +11,7 @@ export async function GET (request: Request) {
 
   const details = {
     name: data.name,
-    imgUrl: data.images[0].url,
+    imgUrl: data.images.length === 0 ? '/images/noimage.png' : data.images[0].url,
     spotifyUrl: data.external_urls.spotify,
     popularity: data.popularity,
     followers: data.followers.total,
