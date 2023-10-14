@@ -10,19 +10,35 @@ import { TermNavigation } from '@/components/TermNavigation'
 import { TermProvider } from './context/term-context'
 
 const lincolnPrimary = localFont({
-  src: '../public/fonts/LincolnMITRE-LM.woff',
+  src: '../assets/fonts/LincolnMITRE-LM.woff',
   variable: '--lincoln-primary'
 })
 
 const lincolnSecondary = localFont({
-  src: '../public/fonts/LincolnMITRE-LM7x9.woff',
+  src: '../assets/fonts/LincolnMITRE-LM7x9.woff',
   variable: '--lincoln-secondary'
 })
 
 export const metadata: Metadata = {
-  title: 'listento',
-  description: 'listento | sieslucha',
-  themeColor: '#121212'
+  title: 'Listento',
+  description: 'Description',
+  keywords: [
+    "Spotify",
+    "Spotify stats",
+    "Statistics",
+  ],
+  authors: [
+    {
+      name: 'vuuzo'
+    }
+  ],
+  themeColor: '#121212',
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon-16x16.png',
+    apple: '/apple-touch-icon.png'
+  },
+  manifest: '/site.webmanifest',
 }
 
 export default function RootLayout({
