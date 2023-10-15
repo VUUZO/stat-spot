@@ -1,8 +1,10 @@
 'use client'
 
+import { Container } from "@/components/Container"
 import fetcher from "@/lib/fetcher"
 import { formatNumber } from "@/lib/utils"
 import Image from "next/image"
+import { Fragment } from "react"
 import useSWR from "swr"
 
 type Artist = {
@@ -11,7 +13,7 @@ type Artist = {
   spotifyUrl: string
   popularity: string
   followers: number
-  genres: string
+  genres: string[]
 }
 
 const Page = ({ params }: { params: { id: string } }) => {
@@ -22,23 +24,36 @@ const Page = ({ params }: { params: { id: string } }) => {
     isLoading ? (<div>Fetching artist details...</div>)
     : error ? (<div>Error has occured</div>)
     : (
-      <div className="flex gap-[10px]">
-        <div className="flex-1">
-          <div className="relative w-full border-2 rounded-[20px] overflow-hidden border-dark-light aspect-square">
+      <>
+        <div>
+          <div className="relative mx-auto max-w-[270px] border-2 rounded-[16px] overflow-hidden border-gray-neutral/70 aspect-square shadow-lg">
             <Image
               src={artist?.imgUrl!}
-              alt='txt'
+              alt='track image'
               fill
-              className="object-cover absolute"/>
+              className="object-cover absolute"
+            />
           </div>
         </div>
-        <div className="flex-1">
-          <h2 className="text-3xl hyphens-auto">{artist?.name}</h2>
-          <p>{formatNumber(artist?.followers!)} followers</p>
-          {/* @ts-ignore */}
-          <h3 className="pt-1 font-secondary text-xs">{artist?.genres.map(genre => genre).join(', ')}</h3>
+
+        <div className="py-2 px-mobile">
+          <section>
+            <h2 className="text-md text-white pb-[5px]">{artist?.name}</h2>
+            <h3 className="text-gray-light pb-[10px]">{formatNumber(artist?.followers!)} followers</h3>
+          </section>
+          <section className="flex flex-wrap gap-2 pb-[5px]">
+            {artist?.genres.map((genre, index, arr) => (
+              <div key={genre} className="inline-block bg-gray-lighter/10 border border-gray-light/10 py-[2px] px-2 rounded text-sm">
+                {genre}
+              </div>
+            ))}
+          </section>
         </div>
-      </div>
+
+        <Container className="h-screen">
+
+        </Container>
+      </>
     )
   )
 }
