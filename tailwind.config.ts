@@ -7,6 +7,12 @@ const config: Config = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    fontSize: {
+      'sm': '9.27px',
+      'base': '15px',
+      'md': '24.27px',
+      'lg': '39.27px',
+    },
     animation: {
       'spin-track': 'spin 3s linear infinite',
     },
@@ -17,6 +23,19 @@ const config: Config = {
       },
     },
     extend: {
+      colors: {
+        gray: {
+          'darker': '#131313',
+          'dark': '#161616',
+          'neutral': '#242424',
+          'light': '#838383',
+          'lighter': '#D9D9D9',
+        },
+        'primary': '#5EFF80',
+      },
+      padding: {
+        mobile: '10px'
+      },
       gridTemplateAreas: {
         'layout': [
           'empty play',
@@ -39,13 +58,6 @@ const config: Config = {
       fontFamily: {
         primary: ['var(--lincoln-primary)'],
         secondary: ['var(--lincoln-secondary)'],
-      },
-      colors: {
-        'darkest': '#131313',
-        'dark': '#181818',
-        'dark-light': '#242424',
-        'green': '#91FF5E',
-        'green-light': 'rgba(55,255,99,.2)',
       },
     },
   },
