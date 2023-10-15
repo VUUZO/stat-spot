@@ -6,6 +6,10 @@ export const dynamic = 'force-dynamic'
 export async function GET(request: Request) {
   const response = await getNowPlaying();
 
+  if (!response.ok) {
+    throw new Error(`Error! status: ${response.status}`);
+  }
+
   if (response.status === 204 || response.status > 400) {
     return NextResponse.json({
       isPlaying: false
