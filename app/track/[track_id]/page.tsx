@@ -1,9 +1,12 @@
 'use client'
 
+import { Container } from "@/components/Container"
+import { Fragment } from "react"
 import fetcher from "@/lib/fetcher"
 import Image from "next/image"
 import Link from "next/link"
 import useSWR from "swr"
+import { SkeletonTrackDetails } from "@/components/skeleton/SkeletonTrackDetails"
 
 type ArtistType = {
   name: string
@@ -29,36 +32,49 @@ const Page = ({ params }: { params: { track_id: string } }) => {
   const { track_id } = params
   const { data: track, isLoading, error } = useSWR<Track>(`/api/track?track_id=${track_id}`, fetcher)
   
-  console.log(track?.artists)
-
   const dateFormatter =
   (date: string | number)=>
-  new Intl.DateTimeFormat('en', { dateStyle:"medium" }).format(new Date(date))
+  new Intl.DateTimeFormat('en', { year: 'numeric' }).format(new Date(date))
 
   return (
-    isLoading ? (<div>Fetching track details...</div>)
+    isLoading ? (<SkeletonTrackDetails />)
     : error ? (<div>Error has occured</div>)
     : (
-      <div>
+      <>
+      {/* IMAGE */}
         <div>
-          <div className="relative w-full border-2 rounded-[20px] overflow-hidden border-dark-light aspect-square">
+          <div className="relative mx-auto max-w-[270px] border-2 rounded-[16px] overflow-hidden border-gray-neutral/70 aspect-square shadow-lg">
             <Image
               src={track?.songImg!}
-              alt='txt'
+              alt='track image'
               fill
-              className="object-cover absolute"/>
+              className="object-cover absolute"
+            />
           </div>
-          <p className="text-sm pt-[10px] text-zinc-400">{track?.album.name} · {dateFormatter(track?.album.release_date!)}</p>
         </div>
-        <div className="py-5">
-          <h2 className="text-3xl">{track?.name}</h2>
-          <h3 className="pt-1 font-secondary text-xs">
-            {track?.artists.map(artist => (
-              <Link className="inline-block mr-2 hover:text-green hover:bg-green-light" key={artist.id} href={`/artist/${artist.id}`}>{artist.name}</Link>
+      {/* TRACK INFO */}
+        <div className="py-2 px-mobile">
+          <h2 className="text-md text-white pb-[5px]">{track?.name}</h2>
+          <h3 className="text-base text-gray-light pb-[10px]">
+            {track?.artists.map((artist, index, arr) => (
+              <Fragment key={artist.id}>
+                <Link
+                  href={`/artist/${artist.id}`}
+                  className="inline-block hover:text-gray-lighter hover:underline"
+                >
+                    {artist.name}
+                </Link>
+                {index < arr.length-1 && <span className="px-2">/</span>}
+              </Fragment>
             ))}
           </h3>
+          <p className="font-secondary">{dateFormatter(track?.album.release_date!)}</p>
         </div>
-      </div>
+        {/* TRACK STATS */}
+        <Container className="h-screen">
+
+        </Container>
+      </>
     )
   )
 }
