@@ -7,7 +7,7 @@ const TopLayout = ({ children }: { children: React.ReactNode }) => {
     <section>
       <TopValuesProvider>
         <Container>
-        <TopNavigation />
+          <TopNavigation />
           { children }
         </Container>
       </TopValuesProvider>
