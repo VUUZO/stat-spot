@@ -31,7 +31,7 @@ const Navigation = ({ className }: { className?: string }) => {
           >
             <Link href={href} className="flex justify-center items-center gap-[5px] p-[10px]">
                 <span>{name}</span>
-                <div className={`${href === pathname ? 'opacity-100' : 'opacity-20'}`}>
+                <div className={`transition-opacity ${href === pathname ? 'opacity-100' : 'opacity-20'}`}>
                   <Icon />
                 </div>
             </Link>
