@@ -1,4 +1,5 @@
 import { ReactNode } from "react"
+import { Container } from "./Container"
 
 export const Grid = ({ children }: { children: ReactNode }) => {
   return (

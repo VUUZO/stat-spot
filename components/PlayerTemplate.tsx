@@ -5,7 +5,7 @@ import { Container } from "./Container"
 
 export const PlayerTemplate = ({ data }: { data: NowPlaying }) => {
   return (
-  <Container className="p-[20px] md:p-[32px]">
+  <Container>
     <Link href={ data?.songUrl } target="_blank" className="block">
       <div className="flex gap-[20px] sm:flex-row md:gap-[32px] items-start">
         <div

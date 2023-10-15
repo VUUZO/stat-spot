@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
 ::selection {
-  background-color: rgba(145,255,94,.2);
+  background-color: rgba(92, 255, 127, 0.4);
+  color: black
 }
 
 ::-webkit-scrollbar {

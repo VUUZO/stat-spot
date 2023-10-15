@@ -75,7 +75,7 @@ const ShowArtists = ({ data }: { data: Artist[] }) => {
       <li key={artist.name}>
         <Link href={`/artist/${artist.id}`}>
           <div className="flex flex-col gap-2 sm:gap-4">
-            <div className="aspect-square w-full relative overflow-hidden rounded-md border-2 border-dark-light">
+            <div className="aspect-square w-full relative overflow-hidden rounded-md border-2 border-gray-neutral border-opacity-75">
               <Image src={artist.imageUrl} alt={artist.name} fill className='object-cover absolute' />
             </div>
             <div>
@@ -99,7 +99,7 @@ const ShowTracks = ({ data }: { data: Track[] }) => {
       <li key={track.title}>
         <Link href={`/track/${track.track_id}`}>
           <div className="flex flex-col gap-2 sm:gap-4">
-            <div className="aspect-square w-full relative overflow-hidden rounded-md border-2 border-dark-light">
+            <div className="aspect-square w-full relative overflow-hidden rounded-md border-2 border-gray-neutral border-opacity-75">
               <Image src={track.albumImageUrl} alt={track.title} fill className='object-cover absolute' />
             </div>
             <div>

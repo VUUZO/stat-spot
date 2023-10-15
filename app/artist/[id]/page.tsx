@@ -1,7 +1,7 @@
 'use client'
 
 import fetcher from "@/lib/fetcher"
-import { formatNumber } from "@/lib/numberFormatter"
+import { formatNumber } from "@/lib/utils"
 import Image from "next/image"
 import useSWR from "swr"
 

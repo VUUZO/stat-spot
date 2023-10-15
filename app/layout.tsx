@@ -49,14 +49,21 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${lincolnPrimary.variable} ${lincolnSecondary.variable} font-primary text-zinc-300 bg-[#111]`}
+      className={`${lincolnPrimary.variable} ${lincolnSecondary.variable} font-primary text-base text-gray-lighter bg-gray-darker`}
     >
       <body>
-        <section>
-          <Navigation />
+        
+        <img className='-z-10 pointer-events-none select-none w-full fixed top-0 left-0' src="images/blob001.png" alt="blob" />
+        <img className='-z-10 pointer-events-none select-none w-full fixed bottom-0 right-0' src="images/blob002.png" alt="blob" />
+        
+        <section className='max-w-7xl mx-auto'>
+
           <TermProvider>
-            <TermNavigation />
-            <Container className='rounded-[30px]'>
+            <div className='sticky top-0 z-50'>
+              <Navigation />
+              <TermNavigation />
+            </div>
+            <Container variant={'transparent'} className='flex flex-col gap-[10px]'>
               {children}
             </Container>
           </TermProvider>

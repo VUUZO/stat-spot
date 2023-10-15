@@ -4,30 +4,40 @@ import Link from "next/link"
 import { usePathname } from 'next/navigation'
 import { twMerge } from "tailwind-merge"
 
+import HomeIcon from "./icons/HomeIcon"
+import StatsIcon from "./icons/StatsIcon"
+import TopIcon from "./icons/TopIcon"
+
+
 const links = [
-  { id: 0, name: 'Home', href: '' },
-  { id: 1, name: 'Top', href: 'top' },
-  { id: 2, name: 'Stats', href: 'stats' },
+  { id: 0, name: 'Home', href: '/', Icon: HomeIcon },
+  { id: 1, name: 'Top', href: '/top', Icon: TopIcon },
+  { id: 2, name: 'Stats', href: '/stats', Icon: StatsIcon },
 ]
 
-const Navigation = ({ className = '' }: { className?: string }) => {
+const Navigation = ({ className }: { className?: string }) => {
   const pathname = usePathname()
   
   return (
     <nav
       className={
-        twMerge(`flex gap-5 p-4 md:p-8 md:gap-7`, className)
+        twMerge(`flex justify-between p-mobile `, className)
       }>
-      {links.map(link => (
-        <div
-          key={link.id}
-          className={`leading-none ${`/${link.href}` === pathname ? '' : 'opacity-30'}`}
-        >
-          <Link
-            href={`/${link.href}`}>{link.name}
-          </Link>
-        </div>
-      ))}
+      {
+        links.map(({ id, href, name, Icon }) => (
+          <div
+            key={id}
+            className="flex-1"
+          >
+            <Link href={href} className="flex justify-center items-center gap-[5px] p-[10px]">
+                <span>{name}</span>
+                <div className={`${href === pathname ? 'opacity-100' : 'opacity-20'}`}>
+                  <Icon />
+                </div>
+            </Link>
+          </div>  
+        ))
+      }
     </nav>
   )
 }

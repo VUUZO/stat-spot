@@ -34,7 +34,8 @@ const config: Config = {
         'primary': '#5EFF80',
       },
       padding: {
-        mobile: '10px'
+        mobile: '10px',
+        'mobile-nav': '4px',
       },
       gridTemplateAreas: {
         'layout': [
