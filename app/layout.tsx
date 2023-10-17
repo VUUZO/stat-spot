@@ -21,11 +21,12 @@ const lincolnSecondary = localFont({
 
 export const metadata: Metadata = {
   title: 'Listento',
-  description: 'Description',
+  description: 'Listento | Track your Spotify data',
   keywords: [
     "Spotify",
     "Spotify stats",
     "Statistics",
+    "Listento",
   ],
   authors: [
     {
@@ -57,7 +58,6 @@ export default function RootLayout({
         <img className='-z-10 pointer-events-none select-none w-full fixed bottom-0 right-0' src="/images/blob002.png" alt="blob" />
         
         <section className='max-w-7xl mx-auto'>
-
           <TermProvider>
             <div className='sticky top-0 z-50'>
               <div className='absolute -z-10 inset-0 saturate-150 [mask-image:linear-gradient(black_20%,rgb(0,0,0,.8)_80%,transparent_90%)] bg-gray-darker'/>
