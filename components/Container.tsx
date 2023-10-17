@@ -5,7 +5,7 @@ import { HTMLAttributes, FC } from 'react'
 export interface ContainerProps extends HTMLAttributes<HTMLDivElement>, VariantProps<typeof containerVariants> {}
 
 export const containerVariants = cva(
-  'list-none p-mobile',
+  'list-none',
   {
     variants: {
       variant: {
@@ -15,15 +15,20 @@ export const containerVariants = cva(
       opacity: {
         'visible': 'bg-opacity-100',
         'through': 'bg-opacity-75',
+      },
+      padding: {
+        'default': 'p-mobile',
+        'small': 'p-[4px]'
       }
     },
     defaultVariants: {
       variant: 'default',
-      opacity: 'visible'
+      opacity: 'visible',
+      padding: 'default'
     }
   }
 )
 
-export const Container: FC<ContainerProps> = ({ className, variant, opacity, ...props }) => {
-  return <div className={cn(containerVariants({ variant, opacity, className }))} {...props} />
+export const Container: FC<ContainerProps> = ({ className, variant, opacity, padding, ...props }) => {
+  return <div className={cn(containerVariants({ variant, opacity, padding, className }))} {...props} />
 }

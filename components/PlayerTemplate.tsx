@@ -10,7 +10,7 @@ export const PlayerTemplate = ({ data }: { data: NowPlaying }) => {
   const indicatorRef = useRef(null)
 
   return (
-  <Container className="p-[4px]"> 
+  <Container padding={"small"}> 
     <Link href={ data?.songUrl } target="_blank" className="block">
       <div
       className="flex gap-4">
