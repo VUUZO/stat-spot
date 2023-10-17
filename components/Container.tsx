@@ -1,6 +1,6 @@
-import { VariantProps, cva } from "class-variance-authority" 
 import { cn } from "@/lib/utils"
-import { FC, HTMLAttributes } from 'react'
+import { VariantProps, cva } from "class-variance-authority" 
+import { HTMLAttributes, FC } from 'react'
 
 export interface ContainerProps extends HTMLAttributes<HTMLDivElement>, VariantProps<typeof containerVariants> {}
 
