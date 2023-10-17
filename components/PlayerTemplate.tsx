@@ -1,15 +1,21 @@
+'use client'
+
 import Link from "next/link"
 import NowPlaying from "./NowPlaying"
 import Image from "next/image"
 import { Container } from "./Container"
+import { useRef } from 'react'
 
 export const PlayerTemplate = ({ data }: { data: NowPlaying }) => {
+  const indicatorRef = useRef(null)
+
   return (
-  <Container>
+  <Container className="p-[4px]"> 
     <Link href={ data?.songUrl } target="_blank" className="block">
-      <div className="flex gap-[20px] sm:flex-row md:gap-[32px] items-start">
+      <div
+      className="flex gap-4">
         <div
-          className={`relative w-[55px] md:w-[67px] aspect-square shrink-0 rounded-full overflow-hidden ${data.isPlaying ? 'animate-spin-track' : ''}`}>
+          className={`relative w-[60px] aspect-square shrink-0 rounded-[13px] overflow-hidden`}>
           <Image
             alt={'track cover image'}
             src={data.albumImageUrl as string}
@@ -17,13 +23,10 @@ export const PlayerTemplate = ({ data }: { data: NowPlaying }) => {
             sizes="(max-width: 770px) 10vw, 20vw"
             className="object-fill absolute"
           />
-          <div className="absolute inset-0 z-10 rounded-full shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3),inset_0_-1px_1px_0px_rgba(0,0,0,0.4)]"/>
-          <div className="absolute inset-2 z-10 rounded-full shadow-[inset_0_1px_0_0_rgba(255,255,255,0.15)]"/>
-          <div className="absolute inset-5 z-10 rounded-full bg-black/30 shadow-[inset_0_-1px_0_0_rgba(255,255,255,0.3),inset_0_1px_1px_0px_rgba(0,0,0,0.4)]"/>
         </div>
-        <div className="overflow-hidden">
-          <h2 className="font-primary truncate text-[24px] md:leading-[48px] md:text-[40px]">{data.title}</h2>
-          <p className="font-secondary truncate text-xs md:text-base md:leading-[19px]">{data.artist}</p>
+        <div className="overflow-hidden relative flex-1 [mask-image:linear-gradient(to_right,black_80%,transparent_95%)]">
+          <h2 className="font-primary truncate text-clip text-md">{data.title}</h2>
+          <p className="font-secondary truncate text-clip text-base">{data.artist}</p>
         </div>
       </div>
     </Link>
