@@ -1,11 +1,18 @@
-import NowPlaying from "@/components/now-playing";
-import TopTracks from "@/components/top-tracks";
+import { Container } from "@/components/Container";
+import NowPlaying from "@/components/NowPlaying";
+import { Element } from "@/components/TopTracksElement";
 
 export default function Home () {
    return (
-    <div className="p-3 sm:p-8">
-      <NowPlaying />
-      <TopTracks />
-    </div>
+    <>
+      <Container variant={'transparent'}>
+        <NowPlaying />
+      </Container>
+      
+      <Container>
+        <h2 className="text-base pb-[10px]">top tracks</h2>
+        <Element limit={15} />
+      </Container>
+    </>
   )
 }
