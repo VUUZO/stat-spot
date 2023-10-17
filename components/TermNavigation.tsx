@@ -23,10 +23,14 @@ export const TermNavigation = () => {
             className={`relative w-full px-4 py-2 rounded-[12px]`}
             onClick={() => setTerm(button.term as Term)}
           >
-            <span className={`${button.term === term ? 'text-primary' : ''}`}>{button.name}</span>
+            <span className={`relative z-10 ${button.term === term ? 'text-primary' : ''}`}>{button.name}</span>
             {
               button.term === term && (
-                <motion.div layoutId="active" className={`absolute rounded-[12px] inset-0 bg-primary/20`}/>
+                <motion.div
+                  layoutId="active"
+                  style={{ borderRadius: '12px' }}
+                  className={`absolute inset-0 bg-primary/20`}
+                />
               )
             }
           </button>
