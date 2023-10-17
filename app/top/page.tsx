@@ -66,20 +66,17 @@ export default Page
 
 
 const ShowArtists = ({ data }: { data: Artist[] }) => {
-  console.log(data[0].name, data[0].id)
-
-
   return (
     <>
     {data?.map((artist, idx) => (
       <li key={artist.name}>
         <Link href={`/artist/${artist.id}`}>
-          <div className="flex flex-col gap-2 sm:gap-4">
+          <div className="flex flex-col gap-[5px] sm:gap-[10px]">
             <div className="aspect-square w-full relative overflow-hidden rounded-md border-2 border-gray-neutral border-opacity-75">
               <Image src={artist.imageUrl} alt={artist.name} fill className='object-cover absolute' />
             </div>
             <div>
-              <h3 className="font-primary truncate text-xl sm:text-[32px]"><span className="text-green">{idx + 1}.</span> {artist.name}</h3>
+              <h3 className="font-primary truncate text-base sm:text-md"><span className="text-primary">{idx + 1}.</span> {artist.name}</h3>
             </div>
           </div>
         </Link>
@@ -90,21 +87,18 @@ const ShowArtists = ({ data }: { data: Artist[] }) => {
 }
 
 const ShowTracks = ({ data }: { data: Track[] }) => {
-  console.log(data[0].title, data[0].artist)
-  
-
   return (
     <>
     {data?.map((track, idx) => (
       <li key={track.title}>
         <Link href={`/track/${track.track_id}`}>
-          <div className="flex flex-col gap-2 sm:gap-4">
+          <div className="flex flex-col gap-[5px] sm:gap-[10px]">
             <div className="aspect-square w-full relative overflow-hidden rounded-md border-2 border-gray-neutral border-opacity-75">
               <Image src={track.albumImageUrl} alt={track.title} fill className='object-cover absolute' />
             </div>
-            <div>
-              <h3 className="font-primary truncate text-xl sm:text-[32px]"><span className="text-green">{idx + 1}.</span> {track.title}</h3>
-              <p className="font-secondary truncate text-zinc-300 text-xs sm:text-base">{track.artist}</p>
+            <div className="[mask-image:linear-gradient(to_right,black_80%,transparent_95%)]">
+              <h3 className="font-primary truncate text-clip text-base sm:text-md"><span className="text-primary">{idx + 1}.</span> {track.title}</h3>
+              <p className="font-secondary truncate text-clip text-zinc-300 text-sm sm:text-base">{track.artist}</p>
             </div>
           </div>
         </Link>
