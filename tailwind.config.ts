@@ -15,12 +15,16 @@ const config: Config = {
     },
     animation: {
       'spin-track': 'spin 3s linear infinite',
+      'shimmer': 'shimmer 4s infinite'
     },
     keyframes: {
-      'spin': {
+      spin: {
         '0%': { transform: 'rotate(0deg)' },
         '100%': { transform: 'rotate(360deg)' },
       },
+      shimmer: {
+        '100%': { transform: 'translateX(100%)' }
+      }
     },
     extend: {
       colors: {
