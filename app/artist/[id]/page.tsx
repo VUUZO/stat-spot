@@ -1,10 +1,10 @@
 'use client'
 
 import { Container } from "@/components/Container"
+import { SkeletonArtistDetails } from "@/components/skeleton/SkeletonArtistDetails"
 import fetcher from "@/lib/fetcher"
 import { formatNumber } from "@/lib/utils"
 import Image from "next/image"
-import { Fragment } from "react"
 import useSWR from "swr"
 
 type Artist = {
@@ -21,7 +21,7 @@ const Page = ({ params }: { params: { id: string } }) => {
   const { data: artist, isLoading, error } = useSWR<Artist>(`/api/artist?id=${id}`, fetcher)
 
   return (
-    isLoading ? (<div>Fetching artist details...</div>)
+    isLoading ? (<SkeletonArtistDetails />)
     : error ? (<div>Error has occured</div>)
     : (
       <>
@@ -43,7 +43,7 @@ const Page = ({ params }: { params: { id: string } }) => {
           </section>
           <section className="flex flex-wrap gap-2 pb-[5px]">
             {artist?.genres.map((genre, index, arr) => (
-              <div key={genre} className="inline-block bg-gray-lighter/10 border border-gray-light/10 py-[2px] px-2 rounded text-sm">
+              <div key={genre} className="font-secondary inline-block bg-gray-lighter/10 border border-gray-light/10 py-[2px] px-2 rounded text-sm">
                 {genre}
               </div>
             ))}
