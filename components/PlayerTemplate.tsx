@@ -15,7 +15,7 @@ export const PlayerTemplate = ({ data }: { data: NowPlaying }) => {
       <div
       className="flex gap-4">
         <div
-          className={`relative w-[60px] aspect-square shrink-0 rounded-[13px] overflow-hidden`}>
+          className={`relative w-[60px] select-none aspect-square shrink-0 rounded-[13px] overflow-hidden`}>
           <Image
             alt={'track cover image'}
             src={data.albumImageUrl as string}
