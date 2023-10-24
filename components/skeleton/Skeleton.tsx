@@ -5,11 +5,11 @@ import { HTMLAttributes, FC } from "react"
 interface SkeletonType extends HTMLAttributes<HTMLDivElement>, VariantProps<typeof skeletonVariant> {}
 
 const skeletonVariant = cva(
-  "w-full h-auto bg-gray-neutral border border-gray-dark relative overflow-hidden",
+  "w-full h-auto bg-gray-neutral/50 border border-gray-dark relative overflow-hidden",
   {
     variants: {
       animation: {
-        shimmer: 'after:absolute after:inset-0 after:bg-[linear-gradient(to_right,transparent,hsla(0,0%,30%,.4),transparent)] after:-translate-x-full after:animate-shimmer',
+        shimmer: 'after:absolute after:inset-0 after:bg-[linear-gradient(to_right,transparent,hsla(0,0%,18%,.4),transparent)] after:-translate-x-full after:animate-shimmer',
         second: '',
       },
       rounded: {
