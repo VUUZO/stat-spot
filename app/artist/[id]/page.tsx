@@ -18,7 +18,11 @@ type Artist = {
 
 const Page = ({ params }: { params: { id: string } }) => {
   const { id } = params
-  const { data: artist, isLoading, error } = useSWR<Artist>(`/api/artist?id=${id}`, fetcher)
+  const { data: artist, isLoading, error } = useSWR<Artist>(`/api/artist?id=${id}`, fetcher, {
+    revalidateOnFocus: false,
+    refreshInterval: 3600000,
+    refreshWhenHidden: false
+  })
 
   return (
     isLoading ? (<SkeletonArtistDetails />)
@@ -26,11 +30,13 @@ const Page = ({ params }: { params: { id: string } }) => {
     : (
       <>
         <div>
-          <div className="relative mx-auto max-w-[270px] border-2 rounded-[16px] overflow-hidden border-gray-neutral/70 aspect-square shadow-lg">
+          <div className="relative mx-auto select-none max-w-[270px] border-2 rounded-[16px] overflow-hidden border-gray-neutral/70 aspect-square shadow-lg">
             <Image
               src={artist?.imgUrl!}
               alt='track image'
               fill
+              sizes="(max-width: 400px) 260px, 300px"
+              priority
               className="object-cover absolute"
             />
           </div>

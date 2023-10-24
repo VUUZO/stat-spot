@@ -55,6 +55,26 @@ export const getTopArtists = async (time_range: Term = 'short_term', limit: numb
   })
 }
 
+export const getRecentlyPlayed = async (limit: number = 50) => {
+  const { access_token } = await getAccessToken()
+
+  return fetch(`https://api.spotify.com/v1/me/player/recently-played?limit=${limit}`, {
+    headers: {
+      Authorization: `Bearer ${access_token}`
+    }
+  })
+}
+
+export const getTopGenres = async (time_range: Term = 'short_term') => {
+  const { access_token } = await getAccessToken()
+
+  return fetch(`https://api.spotify.com/v1/me/top/artists?time_range=${time_range}`, {
+    headers: {
+      Authorization: `Bearer ${access_token}`
+    }
+  })
+}
+
 
 // TRACK DETAILS
 

@@ -10,7 +10,7 @@ import { Grid } from "@/components/Grid"
 import { useTermContext } from "../context/term-context"
 import { useTopValues } from "../context/top-values-context"
 
-type Track = {
+export type Track = {
   title: string
   songUrl: string
   albumImageUrl: string
@@ -18,7 +18,7 @@ type Track = {
   track_id: string
 }
 
-type Artist = {
+export type Artist = {
   name: string
   id: string
   imageUrl: string
@@ -72,8 +72,12 @@ const ShowArtists = ({ data }: { data: Artist[] }) => {
       <li key={artist.name}>
         <Link href={`/artist/${artist.id}`}>
           <div className="flex flex-col gap-[5px] sm:gap-[10px]">
-            <div className="aspect-square w-full relative overflow-hidden rounded-md border-2 border-gray-neutral border-opacity-75">
-              <Image src={artist.imageUrl} alt={artist.name} fill className='object-cover absolute' />
+            <div className="aspect-square w-full select-none relative overflow-hidden rounded-md border-2 border-gray-neutral border-opacity-75">
+              <Image src={artist.imageUrl} alt={artist.name}
+                sizes="(max-width: 400px) 115px, (max-width:600px) 200px, 300px"
+                fill
+                className='object-cover absolute'
+              />
             </div>
             <div>
               <h3 className="font-primary truncate text-base sm:text-md"><span className="text-primary">{idx + 1}.</span> {artist.name}</h3>
@@ -93,8 +97,11 @@ const ShowTracks = ({ data }: { data: Track[] }) => {
       <li key={track.title}>
         <Link href={`/track/${track.track_id}`}>
           <div className="flex flex-col gap-[5px] sm:gap-[10px]">
-            <div className="aspect-square w-full relative overflow-hidden rounded-md border-2 border-gray-neutral border-opacity-75">
-              <Image src={track.albumImageUrl} alt={track.title} fill className='object-cover absolute' />
+            <div className="aspect-square select-none w-full relative overflow-hidden rounded-md border-2 border-gray-neutral border-opacity-75">
+              <Image src={track.albumImageUrl} alt={track.title}
+              sizes="(max-width: 400px) 115px, (max-width:600px) 200px, 300px"
+              fill
+              className='object-cover absolute' />
             </div>
             <div className="[mask-image:linear-gradient(to_right,black_80%,transparent_95%)]">
               <h3 className="font-primary truncate text-clip text-base sm:text-md"><span className="text-primary">{idx + 1}.</span> {track.title}</h3>

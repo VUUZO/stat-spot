@@ -10,7 +10,7 @@ export const SkeletonArtistDetails = () => {
         <Skeleton size={"lg"} className="mb-[5px] w-[12ch]"/>
         <Skeleton className="w-[18ch] mb-[10px]" />
         <div className="flex gap-2 pb-[8px]">
-          {[...Array(3)].map(_  => <Skeleton key={_} className="w-[7ch]"/>)}
+          {[...Array(3)].map((_,i)  => <Skeleton key={i} className="w-[7ch]"/>)}
         </div>
       </div>
     </>

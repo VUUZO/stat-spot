@@ -28,7 +28,7 @@ export const TermNavigation = () => {
               button.term === term && (
                 <motion.div
                   layoutId="active"
-                  style={{ borderRadius: '12px' }}
+                  style={{ borderRadius: '12px', originY: '0px' }}
                   className={`absolute inset-0 bg-primary/20`}
                 />
               )
