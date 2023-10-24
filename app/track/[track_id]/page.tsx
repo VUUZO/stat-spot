@@ -1,7 +1,7 @@
 'use client'
 
 import { Container } from "@/components/Container"
-import { Fragment, useRef } from "react"
+import { Fragment } from "react"
 import fetcher from "@/lib/fetcher"
 import Image from "next/image"
 import Link from "next/link"
