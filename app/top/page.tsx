@@ -69,7 +69,7 @@ const ShowArtists = ({ data }: { data: Artist[] }) => {
   return (
     <>
     {data?.map((artist, idx) => (
-      <li key={artist.name}>
+      <li key={artist.id}>
         <Link href={`/artist/${artist.id}`}>
           <div className="flex flex-col gap-[5px] sm:gap-[10px]">
             <div className="aspect-square w-full select-none relative overflow-hidden rounded-md border-2 border-gray-neutral border-opacity-75">
@@ -94,7 +94,7 @@ const ShowTracks = ({ data }: { data: Track[] }) => {
   return (
     <>
     {data?.map((track, idx) => (
-      <li key={track.title}>
+      <li key={track.track_id}>
         <Link href={`/track/${track.track_id}`}>
           <div className="flex flex-col gap-[5px] sm:gap-[10px]">
             <div className="aspect-square select-none w-full relative overflow-hidden rounded-md border-2 border-gray-neutral border-opacity-75">
