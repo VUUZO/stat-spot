@@ -48,14 +48,16 @@ const Page = ({ params }: { params: { track_id: string } }) => {
         <div>
           <div
             className="relative mx-auto select-none max-w-[270px] border-2 rounded-[16px] overflow-hidden border-gray-neutral/70 aspect-square shadow-lg">
-            <Image
-              src={track?.songImg!}
-              alt='track image'
-              fill
-              sizes="(max-width: 400px) 260px, 300px"
-              priority
-              className="object-cover absolute"
-            />
+            <Link href={track?.songUrl!}>
+              <Image
+                src={track?.songImg!}
+                alt='track image'
+                fill
+                sizes="(max-width: 400px) 260px, 300px"
+                priority
+                className="object-cover absolute"
+              />
+            </Link>
           </div>
         </div>
         <div className="py-2 px-mobile z-20">
