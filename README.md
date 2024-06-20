@@ -1,2 +1,1 @@
-## Overview
-This is a simple app that uses [Spotify API](https://developer.spotify.com/documentation/web-api) to show my top tracks and currently playing song. You can see it live [here](https://cosieslucha.vercel.app/)
+"Listento" is a simple application that leverages the [Spotify API](https://developer.spotify.com/documentation/web-api) to display your top tracks and the currently playing song. Built with TypeScript and styled using Tailwind CSS, this project provides a clean interface for me to explore my listening habits. You can see the app [live here](https://cosieslucha.vercel.app/).
